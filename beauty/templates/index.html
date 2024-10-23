@@ -1,0 +1,199 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="produtos">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>beautysalon</title>
+  <link rel="stylesheet" href="{% static 'style.css' %}">
+
+  <!-- dm sans -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap" rel="stylesheet"> 
+
+  <!-- poppins -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+</head>
+
+<body>
+  <header id="header">
+    <nav class="container">
+      <a class="logo">beauty<span>salon</span>.</a>
+      <div class="menu">
+        <ul class="grid dm-sans">
+          <li><a class="title" href="#home">Início</a></li>
+          <li><a class="title" href="#about">Sobre</a></li>
+          <li><a class="title" href="#services">Serviços</a></li>
+          <li><a class="title" href="#testimonials">Depoimentos</a></li>
+          <li><a class="title" href="#contact">Contato</a></li>
+            <li><a class="title" href="{% url 'login' %}">Entrar</a></li>        </ul>
+      </div>
+      <div class="toggle icon-menu"><img src="{% static 'img/menu.png' %}" alt=""></div>
+      <div class="toggle icon-close"><img src="{% static 'img/close.png' %}" alt=""></div>
+    </nav>  
+  </header>
+  <main>
+    <section class="section" id="home">
+      <div class="container grid">
+          <div class="image">
+              {% if first_slide.first_slide_image %}
+                  <img src="{{ first_slide.first_slide_image.url }}" alt="{{ first_slide.first_slide_title }}">
+              {% else %}
+                  <img src="https://via.placeholder.com/500" alt="Изображение по умолчанию">
+              {% endif %}
+          </div>
+          <div class="text">
+              <h2 class="title">{{ first_slide.first_slide_title }}</h2>
+              <p class="dm-sans" style="color: #767676;">
+                  {{ first_slide.first_slide_text }}
+              </p>
+              <a class="button" href="#">Agendar um horário</a>
+          </div>
+      </div>
+  </section>  
+    <section class="section" id="about">
+    <div class="container grid" style="width: 100%; height: auto;">
+        <div class="image">
+            {% if about_us.image %}
+                <img src="{{ about_us.image.url }}" alt="{{ about_us.title }}">
+            {% else %}
+                <img src="https://via.placeholder.com/500" alt="Изображение по умолчанию">
+            {% endif %}
+        </div>
+        <div class="text">
+            <h2 class="title">{{ about_us.title }}</h2>
+            <p class="dm-sans" style="color: #767676;">
+                {{ about_us.description }}
+            </p>
+        </div>
+    </div>
+</section>
+
+    <section class="section" id="services">
+      <div class="container grid">
+        <header>
+          <h2 class="title">Serviços</h2>
+          <p class="subtitle">
+            Com mais de 10 anos no mercado, o <strong>Beautysalon</strong> já
+            conquistou clientes de inúmeros países com seus tratamentos
+            exclusivos e totalmente naturais
+          </p>
+        </header>
+        <div class="cards grid">
+          <div class="card" data-sr-id="7" style="max-width: 352px; max-height: 352px;">
+            <i class="icon-woman-hair"><img src="{% static 'img/woman-hair.png' %}"></i>
+            <h3 class="title" style="font-size: 24px;">Terapia capilar</h3>
+            <p class="dm-sans" style="color: #767676;">
+              Terapia completa para couro cabeludo e fios, protegendo todos os tipos de cabelos, inclusive os longos e
+              finos.
+            </p>
+          </div>
+          <div class="card" data-sr-id="8" style="max-width: 352px; max-height: 352px;">
+            <i class="icon-trim"><img src="{% static 'img/trim.png' %}"></i>
+            <h3 class="title" style="font-size: 24px;">Cortes</h3>
+            <p class="dm-sans" style="color: #767676;">
+              A nossa equipe é repleta de profissionais renomados, famosos por lançarem tendências com cortes
+              diferenciados e clássicos.
+            </p>
+          </div>
+          <div class="card" data-sr-id="9" style="max-width: 352px; max-height: 352px;">
+            <i class="icon-cosmetic"><img src="{% static 'img/cosmetic.png' %}"></i>
+            <h3 class="title" style="font-size: 24px;">Tratamentos</h3>
+            <p class="dm-sans" style="color: #767676;">
+              O beautysalon conta com diversos tratamentos naturais e totalmente veganos, para qualquer tipo de cabelo.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="section" id="testimonials">
+  <div class="container" style="width: 100%; height: auto;">
+    <header>
+      <h2 class="title">Depoimentos de quem já passou por aqui</h2>
+    </header>
+    <div class="testimonials">
+      <div class="swiper-wrapper" style="position: relative; top: 55px;">
+        {% for testimonial in testimonials %}
+        <div class="swiper" style="width: 550px;">
+          <blockquote class="wanessa-cite dm-sans">
+            <p>
+              <span>&ldquo;</span>
+              {{ testimonial.girl_one_testimonial }}
+            </p>
+            <cite>
+              {% if testimonial.image_one %}
+                <img src="{{ testimonial.image_one.url }}">
+              {% else %}
+                <img src="https://via.placeholder.com/150" alt="Image not available">
+              {% endif %}
+              {{ testimonial.girl_one_name }}
+            </cite>
+          </blockquote>
+        </div>
+
+        <div class="swiper" style="width: 550px;">
+          <blockquote class="venega-cite dm-sans">
+            <p>
+              <span>&ldquo;</span>
+              {{ testimonial.girl_two_testimonial }}
+            </p>
+            <cite>
+              {% if testimonial.image_two %}
+                <img src="{{ testimonial.image_two.url }}">
+              {% else %}
+                <img src="https://via.placeholder.com/150" alt="Image not available">
+              {% endif %}
+              {{ testimonial.girl_two_name }}
+            </cite>
+          </blockquote>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+</section>
+    <section class="section" id="contact">
+      <div class="container grid">
+        <div class="text">
+          <h2 class="title">Entre em contato com a gente!</h2>
+          <p class="dm-sans" style="color: #767676;">
+            Entre em contato com a Beautysalon, queremos tirar suas dúvidas,
+            ouvir suas críticas e sugestões.
+          </p>
+          <a href="https://whatsapp.com" class="button" target="_blank"><i class="icon-whatsapp"><img
+                src="{% static 'img/whatsapp 1.png' %}"></i> Entrar em contato</a>
+        </div>
+        <div class="links">
+          <ul class="grid">
+            <li><i class="icon-phone"><img src="{% static 'img/phone.png' %}"></i> 11 99845-6754</li>
+            <li><i class="icon-map-pin"><img src="{% static 'img/map-pin.png' %}"></i> R. Amauri Souza, 346</li>
+            <li><i class="icon-mail"><img src="{% static 'img/mail.png' %}"></i> contato@beautysalon.com</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+  </main>
+  <footer class="section">
+    <div class="container grid">
+      <div class="brand">
+        <a class="logo logo-alt">beauty<span>salon</span>.</a>
+        <p>©2021 Beautysalon.</p>
+        <p>Todos os direitos reservados.</p>
+      </div>
+      <div class="social grid">
+        <a href="https://instagram.com" target="_blank"><i class="icon-instagram"><img
+              src="{% static 'img/instagram 1.png' %}"></i></a>
+        <a href="https://facebook.com" target="_blank"><i class="icon-facebook"><img src="{% static 'img/facebook 1.png' %}"></i></a>
+        <a href="https://youtu.be/dQw4w9WgXcQ?si=1v-wpLWbPIA64njj" target="_blank"><i class="icon-youtube"><img
+              src="{% static 'img/youtube 1.png' %}"></i></a>
+      </div>
+    </div>
+  </footer>
+</body>
+<script src="{% static 'main.js' %}"></script>
+</html>
+

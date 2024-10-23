@@ -1,0 +1,46 @@
+{% load static %}
+<!DOCTYPE html>
+<!-- Created By CodingNepal -->
+<html lang="pt" dir="ltr">
+   <head>
+      <meta charset="utf-8">
+      <title>login</title>
+      <!-- <title>Neumorphism Login Form UI | CodingNepal</title> -->
+      <link rel="stylesheet" href="{% static 'sign.css' %}">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
+   </head>
+   <body>
+      <div class="content">
+         <div class="text">
+            Login
+         </div>
+         <form action="#">
+            <div class="field">
+               <input type="text" required>
+               <span class="fas fa-user"></span>
+               <label>Email ou telefone</label>
+            </div>
+            <div class="field">
+               <input type="password" required>
+               <span class="fas fa-lock"></span>
+               <label>Password</label>
+            </div>
+            <div class="forgot-pass">
+               <a href="#">Esqueceu-se da password?</a>
+            </div>
+            <button><a href="{% url 'lk' %}" style="color: white;">Entrar</a></button>
+            <div class="sign-up">
+                Não é membro?
+               <a href="{% url 'register' %}">Registar-se agora</a>
+            </div>
+         </form>
+      </div>
+   </body>
+{% if messages %}
+    <ul>
+        {% for message in messages %}
+            <li class="message {{ message.tags }}">{{ message }}</li>
+        {% endfor %}
+    </ul>
+{% endif %}
+</html>

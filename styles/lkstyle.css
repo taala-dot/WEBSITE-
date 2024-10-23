@@ -1,0 +1,148 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+ul {
+    list-style: none;
+}
+
+a {
+    text-decoration: none;
+    color: white;
+    font-size: medium;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+:root {
+    --header-heigth: 4.5rem;
+
+    --hue: 159;
+    --base-color: hsl(var(--hue) 36% 57%);
+    --base-color-second: hsl(var(--hue) 65% 88%);
+    --base-color-alt: hsl(var(--hue) 57% 53%);
+    --title-color: hsl(var(--hue) 41% 10%);
+    --text-color: hsl(var(--hue) 0 0% 46%);
+    --text-color-ligth: hsl(0 0% 98%);
+    --body-color: hsl(0 0% 98%);
+
+    --title-font-size: 1.875rem;
+    --subtitle-font-size: 1rem;
+
+    --title-font: "poppins", sans-serif;
+    --body-font: "DM Sans", sans-serif;
+}
+
+body {
+    font: 400 1rem var(--body-font);
+    color: var(--text-color);
+    background: var(--body-color);
+    -webkit-font-smoothing: antialiased;
+    height: 100%;
+}
+
+.container{
+    margin-left: auto;
+    margin-right: auto;
+    max-height: auto;
+}
+
+#header {
+    background: var(--body-color);
+    border-bottom: 1px solid #e4e4e4;
+    display: flex;
+    top: 0;
+    left: 0;
+    width: 100%;
+    position: relative;
+    z-index: 100;
+}
+
+#header.scroll {
+    background-color: var(--base-color);
+    box-shadow: 0px 0px 12px rgba(0, 0, 0, 0.1);
+}
+
+.logo {
+    font: 700 1.875rem var(--title-font);
+    color: var(--title-color);
+}
+
+.logo span {
+    color: var(--base-color);
+}
+
+.logo-alt span {
+    color: var(--body-color);
+}
+
+nav {
+    align-items: center;
+    height: var(--header-heigth);
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+
+main {
+    margin-top: 50px;
+}
+
+.maincon {
+    position: relative;
+    width: 100%;    
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    margin-bottom: 40px;
+}
+
+.btnpos{
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 250px;
+    height: 50px;
+    background-color: #76d7b5;
+    border-radius: 25px;
+    transition: background 0.3s;
+    margin-top: 40px;
+}
+
+.button:focus {
+    color: #69B99D;
+    box-shadow: inset 2px 2px 5px #BABECC,
+        inset -5px -5px 10px #ffffff73;
+}
+
+.button:hover {
+    background: #69B99D;
+}
+
+@media (min-width: 1200px) {
+    .container {
+        max-width: 1200px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+}
+
+
+@media (min-width: 992px) {
+    :root {
+        --title-font-size: 2.25rem;
+        --subtitle-font-size: 1.125rem;
+    }
+}
